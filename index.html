@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fortuity Inc. — Domain Intelligence & Agentic AI Audit</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+    :root {
+      --navy: #1a1f36;
+      --navy-light: #2c3154;
+      --gold: #b4975a;
+      --gold-light: #d4b97a;
+      --gold-pale: #f5ecd7;
+      --cream: #faf8f4;
+      --white: #ffffff;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --red: #dc2626;
+      --red-light: #fef2f2;
+      --amber: #d97706;
+      --amber-light: #fffbeb;
+      --green: #059669;
+      --green-light: #ecfdf5;
+      --blue: #2563eb;
+      --blue-light: #eff6ff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--gray-800);
+      background: var(--white);
+      font-size: 10pt;
+      line-height: 1.6;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ─── COVER PAGE ─── */
+    .cover-page {
+      width: 100%;
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, #0f1628 40%, #1a1f36 60%, #2c3154 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem 3rem;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+    }
+
+    .cover-page::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 80%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(180, 151, 90, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cover-page::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    }
+
+    .cover-badge {
+      background: rgba(180, 151, 90, 0.12);
+      border: 1px solid rgba(180, 151, 90, 0.3);
+      color: var(--gold-light);
+      padding: 0.5rem 1.5rem;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
+
+    .cover-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      color: var(--white);
+      font-size: 3.2rem;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+
+    .cover-title em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .cover-subtitle {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 1rem;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 3rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .cover-divider {
+      width: 80px;
+      height: 1px;
+      background: var(--gold);
+      margin-bottom: 3rem;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 3rem;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .cover-meta strong {
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 500;
+    }
+
+    .cover-domain {
+      font-family: 'Inter', monospace;
+      color: var(--gold-light);
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      padding: 0.75rem 2rem;
+      border: 1px solid rgba(180, 151, 90, 0.25);
+      border-radius: 8px;
+      background: rgba(180, 151, 90, 0.05);
+    }
+
+    /* ─── PAGE LAYOUT ─── */
+    .page {
+      padding: 2.5rem 3rem;
+      page-break-after: always;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .page::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--navy), var(--gold), var(--navy));
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--gray-200);
+      margin-bottom: 2rem;
+    }
+
+    .page-header-left {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.75rem;
+      color: var(--gray-400);
+      font-weight: 500;
+    }
+
+    .page-header-right {
+      font-size: 0.65rem;
+      color: var(--gray-400);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ─── SECTION HEADERS ─── */
+    .section-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--navy);
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 8px;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+
+    .section-title-wrapper {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    h1.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    .section-description {
+      color: var(--gray-500);
+      font-size: 0.85rem;
+      margin-bottom: 2rem;
+      padding-left: 3.5rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy-light);
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin-bottom: 0.75rem;
+      color: var(--gray-700);
+      font-size: 0.85rem;
+    }
+
+    /* ─── EXECUTIVE SUMMARY CARD ─── */
+    .executive-card {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      border-radius: 16px;
+      padding: 2rem 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .executive-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(180, 151, 90, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .executive-card h2 {
+      color: var(--gold);
+      border-bottom-color: rgba(180, 151, 90, 0.3);
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+
+    .executive-card p {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+
+    /* ─── SCORECARD ─── */
+    .scorecard {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .score-item {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .score-item .score-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .score-item .score-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gray-500);
+      margin-bottom: 0.5rem;
+    }
+
+    .score-item .score-bar {
+      height: 4px;
+      background: var(--gray-200);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .score-item .score-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+    }
+
+    .score-red .score-value { color: var(--red); }
+    .score-red .score-bar-fill { background: var(--red); }
+    .score-amber .score-value { color: var(--amber); }
+    .score-amber .score-bar-fill { background: var(--amber); }
+    .score-green .score-value { color: var(--green); }
+    .score-green .score-bar-fill { background: var(--green); }
+    .score-blue .score-value { color: var(--blue); }
+    .score-blue .score-bar-fill { background: var(--blue); }
+
+    /* ─── FINDING CARDS ─── */
+    .finding {
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      border-left: 4px solid;
+      position: relative;
+    }
+
+    .finding-critical {
+      background: var(--red-light);
+      border-left-color: var(--red);
+    }
+
+    .finding-warning {
+      background: var(--amber-light);
+      border-left-color: var(--amber);
+    }
+
+    .finding-opportunity {
+      background: var(--green-light);
+      border-left-color: var(--green);
+    }
+
+    .finding-info {
+      background: var(--blue-light);
+      border-left-color: var(--blue);
+    }
+
+    .finding-tag {
+      display: inline-block;
+      padding: 0.15rem 0.6rem;
+      border-radius: 100px;
+      font-size: 0.55rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .finding-critical .finding-tag { background: var(--red); color: var(--white); }
+    .finding-warning .finding-tag { background: var(--amber); color: var(--white); }
+    .finding-opportunity .finding-tag { background: var(--green); color: var(--white); }
+    .finding-info .finding-tag { background: var(--blue); color: var(--white); }
+
+    .finding h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--gray-800);
+      margin-bottom: 0.4rem;
+    }
+
+    .finding p {
+      font-size: 0.8rem;
+      margin-bottom: 0.3rem;
+    }
+
+    /* ─── TABLES ─── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.8rem;
+    }
+
+    thead th {
+      background: var(--navy);
+      color: var(--white);
+      padding: 0.75rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    thead th:first-child { border-radius: 8px 0 0 0; }
+    thead th:last-child { border-radius: 0 8px 0 0; }
+
+    tbody td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid var(--gray-100);
+      vertical-align: top;
+    }
+
+    tbody tr:hover { background: var(--gray-50); }
+
+    tbody tr:last-child td:first-child { border-radius: 0 0 0 8px; }
+    tbody tr:last-child td:last-child { border-radius: 0 0 8px 0; }
+
+    .status-pill {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 100px;
+      font-size: 0.6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-missing { background: #fee2e2; color: #991b1b; }
+    .status-partial { background: #fef3c7; color: #92400e; }
+    .status-present { background: #d1fae5; color: #065f46; }
+    .status-none { background: #e0e7ff; color: #3730a3; }
+
+    /* ─── RECOMMENDATION BLOCKS ─── */
+    .rec-block {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rec-block::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    }
+
+    .rec-priority {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .rec-priority-high { color: var(--red); }
+    .rec-priority-med { color: var(--amber); }
+    .rec-priority-low { color: var(--green); }
+
+    .rec-block h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .rec-block p, .rec-block li {
+      font-size: 0.8rem;
+      color: var(--gray-600);
+    }
+
+    .rec-block ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .rec-block li {
+      padding: 0.25rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .rec-block li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ─── AI OPPORTUNITY GRID ─── */
+    .ai-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .ai-card {
+      background: linear-gradient(145deg, var(--cream) 0%, var(--white) 100%);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 1.25rem;
+      position: relative;
+    }
+
+    .ai-card-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--navy);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .ai-card h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .ai-card p {
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      margin-bottom: 0;
+    }
+
+    .ai-card .impact-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 0.55rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0.15rem 0.5rem;
+      border-radius: 100px;
+      background: rgba(180, 151, 90, 0.15);
+      color: var(--gold);
+    }
+
+    /* ─── ROADMAP ─── */
+    .roadmap {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .roadmap::before {
+      content: '';
+      position: absolute;
+      left: 0.75rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold), var(--navy));
+    }
+
+    .roadmap-phase {
+      position: relative;
+      margin-bottom: 1.5rem;
+      padding-left: 1rem;
+    }
+
+    .roadmap-phase::before {
+      content: '';
+      position: absolute;
+      left: -1.55rem;
+      top: 0.4rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 2px var(--gold);
+    }
+
+    .roadmap-phase h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+
+    .roadmap-phase .phase-time {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.4rem;
+    }
+
+    .roadmap-phase p {
+      font-size: 0.8rem;
+      color: var(--gray-600);
+    }
+
+    .roadmap-phase ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .roadmap-phase li {
+      font-size: 0.78rem;
+      padding: 0.2rem 0;
+      padding-left: 1rem;
+      position: relative;
+      color: var(--gray-600);
+    }
+
+    .roadmap-phase li::before {
+      content: '●';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.5rem;
+      top: 0.35rem;
+    }
+
+    /* ─── FOOTER ─── */
+    .page-footer {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 3rem;
+      right: 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.6rem;
+      color: var(--gray-400);
+      border-top: 1px solid var(--gray-100);
+      padding-top: 0.75rem;
+    }
+
+    .page-footer .confidential {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold);
+    }
+
+    /* ─── UTILITY ─── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+    .mt-1 { margin-top: 1rem; }
+    .mt-2 { margin-top: 2rem; }
+    .mb-1 { margin-bottom: 1rem; }
+    .mb-2 { margin-bottom: 2rem; }
+    .text-sm { font-size: 0.75rem; }
+    .text-xs { font-size: 0.65rem; }
+    .font-bold { font-weight: 700; }
+    .text-gold { color: var(--gold); }
+    .text-navy { color: var(--navy); }
+
+    .highlight-box {
+      background: var(--cream);
+      border: 1px solid rgba(180, 151, 90, 0.3);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .highlight-box p {
+      font-size: 0.8rem;
+      color: var(--gray-600);
+      margin-bottom: 0;
+    }
+
+    .highlight-box strong {
+      color: var(--navy);
+    }
+
+    .callout-stat {
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .callout-stat .stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    .callout-stat .stat-label {
+      font-size: 0.7rem;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 0.25rem;
+    }
+
+    .quote-block {
+      border-left: 3px solid var(--gold);
+      padding: 1rem 1.5rem;
+      margin: 1rem 0;
+      background: var(--cream);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .quote-block p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--navy);
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!-- ║                    COVER PAGE                       ║ -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<div class="cover-page">
+  <div class="cover-badge">Privileged & Confidential</div>
+  <div class="cover-title">Domain Intelligence<br><em>&</em> Agentic AI Audit</div>
+  <div class="cover-domain">fortuityco.com</div>
+  <div class="cover-subtitle">Strategic Assessment Report</div>
+  <div class="cover-divider"></div>
+  <div class="cover-meta">
+    <span><strong>Prepared:</strong>&nbsp; July 30, 2026</span>
+    <span><strong>Version:</strong>&nbsp; 1.0</span>
+    <span><strong>Classification:</strong>&nbsp; Confidential</span>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!-- ║              PAGE 1 — EXECUTIVE SUMMARY             ║ -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">Fortuity Inc. — Domain Audit</div>
+    <div class="page-header-right">Executive Summary</div>
+  </div>
+
+  <div class="section-title-wrapper">
+    <div class="section-number">1</div>
+    <h1 class="section-title">Executive Summary</h1>
+  </div>
+  <p class="section-description">A high-level assessment of fortuityco.com across SEO, technology, UX design, and agentic AI readiness.</p>
+
+  <div class="executive-card">
+    <h2>Assessment Overview</h2>
+    <p>
+      Fortuity Inc. operates a private advisory and fractional family office practice serving ultra-high-net-worth families, their businesses, and trust-held estates. The firm's website — built on WordPress with Divi 5.7.1 — projects understated sophistication with a dark hero section, gold-accented typography, and a deliberate air of exclusivity. However, this analysis reveals <strong>significant untapped opportunities</strong> in agentic AI integration, technical SEO, client-facing digital experiences, and operational automation that, if addressed, would position Fortuity as a category-defining firm in the modern family office landscape.
+    </p>
+    <p>
+      The site currently functions as a <strong>digital brochure</strong> — aesthetically competent but strategically passive. In 2026, where AI agents autonomously process K-1s, reconcile multi-entity portfolios, and generate real-time client intelligence, a static WordPress site without structured data, client portals, or intelligent automation is a competitive liability. This report maps every gap and presents a prioritized roadmap to close them.
+    </p>
+  </div>
+
+  <div class="scorecard">
+    <div class="score-item score-red">
+      <div class="score-value">28</div>
+      <div class="score-label">SEO Health</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width: 28%"></div></div>
+    </div>
+    <div class="score-item score-amber">
+      <div class="score-value">52</div>
+      <div class="score-label">UX & Design</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width: 52%"></div></div>
+    </div>
+    <div class="score-item score-red">
+      <div class="score-value">12</div>
+      <div class="score-label">Agentic AI</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width: 12%"></div></div>
+    </div>
+    <div class="score-item score-amber">
+      <div class="score-value">45</div>
+      <div class="score-label">Technology</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width: 45%"></div></div>
+    </div>
+  </div>
+
+  <div class="three-col">
+    <div class="callout-stat">
+      <div class="stat-value">17</div>
+      <div class="stat-label">Critical Findings</div>
+    </div>
+    <div class="callout-stat">
+      <div class="stat-value">24</div>
+      <div class="stat-label">AI Opportunities</div>
+    </div>
+    <div class="callout-stat">
+      <div class="stat-value">4×</div>
+      <div class="stat-label">Efficiency Multiplier</div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <p><strong>Bottom line:</strong> Fortuity's brand voice and service model are genuinely differentiated. The website's copy — "Discretion does not advertise" — is powerful. But the technology behind the site undermines the premium positioning. Missing meta descriptions, zero structured data, no client portal, no AI-powered workflows, and a bloated Divi build create a gap between how the firm presents itself and what modern UHNW clients expect from a steward of their empire.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="confidential">Confidential</span>
+    <span>Page 1</span>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!-- ║         PAGE 2 — SEO & TECHNICAL AUDIT              ║ -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">Fortuity Inc. — Domain Audit</div>
+    <div class="page-header-right">SEO & Technical Analysis</div>
+  </div>
+
+  <div class="section-title-wrapper">
+    <div class="section-number">2</div>
+    <h1 class="section-title">SEO & Technical Audit</h1>
+  </div>
+  <p class="section-description">Deep analysis of on-page SEO, structured data, performance, and search visibility factors.</p>
+
+  <div class="finding finding-critical">
+    <span class="finding-tag">Critical</span>
+    <h4>No Meta Description on Any Page</h4>
+    <p>The homepage title is "Fortuity Inc. | Putting Family Back Into the Family Office" — decent, but the site has <strong>no meta description tag</strong> anywhere in the source. Google will auto-generate snippets from page content, resulting in unpredictable, often incoherent search previews. For a firm that values "discretion," having Google choose your words is the opposite of control.</p>
+  </div>
+
+  <div class="finding finding-critical">
+    <span class="finding-tag">Critical</span>
+    <h4>Zero Structured Data / Schema Markup</h4>
+    <p>The site contains no <code>application/ld+json</code> blocks whatsoever. Missing: <strong>Organization</strong>, <strong>ProfessionalService</strong>, <strong>Person</strong> (team members), <strong>FAQPage</strong>, and <strong>BreadcrumbList</strong> schemas. This means Google cannot programmatically understand what Fortuity is, who works there, or what services they offer. Rich search results, knowledge panels, and "People Also Ask" features are entirely inaccessible.</p>
+  </div>
+
+  <div class="finding finding-warning">
+    <span class="finding-tag">Warning</span>
+    <h4>Exposed WordPress Infrastructure</h4>
+    <p>The site exposes <code>/xmlrpc.php</code> (pingback endpoint), RSS feeds, oEmbed JSON/XML endpoints, and a <code>wp-json</code> REST API. The generator meta tag reveals "Divi Child Theme By The 20 v.1.0" — giving attackers precise version intelligence. For a firm handling UHNW families' sensitive data, this surface area is unnecessarily large.</p>
+  </div>
+
+  <div class="finding finding-warning">
+    <span class="finding-tag">Warning</span>
+    <h4>No Open Graph / Social Meta Tags</h4>
+    <p>When the site URL is shared on LinkedIn, Twitter/X, or messaging apps, there are no OG tags to control the preview card — no image, no description, no title override. For a referral-driven business, this is a missed branding opportunity every time a client or partner shares a link.</p>
+  </div>
+
+  <h2>On-Page SEO Element Inventory</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Element</th>
+        <th>Status</th>
+        <th>Impact</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Title Tag</td>
+        <td><span class="status-present">Present</span></td>
+        <td>Medium</td>
+        <td>Exists but not optimized per page; same across subpages</td>
+      </tr>
+      <tr>
+        <td>Meta Description</td>
+        <td><span class="status-missing">Missing</span></td>
+        <td>High</td>
+        <td>Entirely absent — Google auto-generates snippets</td>
+      </tr>
+      <tr>
+        <td>H1 Tag</td>
+        <td><span class="status-partial">Partial</span></td>
+        <td>High</td>
+        <td>Hero heading present but uses H1 inconsistently</td>
+      </tr>
+      <tr>
+        <td>Schema / JSON-LD</td>
+        <td><span class="status-missing">Missing</span></td>
+        <td>Critical</td>
+        <td>No structured data of any type found</td>
+      </tr>
+      <tr>
+        <td>Canonical Tags</td>
+        <td><span class="status-partial">Partial</span></td>
+        <td>Medium</td>
+        <td>WordPress generates, but not verified for correctness</td>
+      </tr>
+      <tr>
+        <td>Image Alt Text</td>
+        <td><span class="status-partial">Partial</span></td>
+        <td>Medium</td>
+        <td>Some images have alt text; many Divi-generated lack it</td>
+      </tr>
+      <tr>
+        <td>Open Graph Tags</td>
+        <td><span class="status-missing">Missing</span></td>
+        <td>High</td>
+        <td>No OG title, description, image, or type tags</td>
+      </tr>
+      <tr>
+        <td>Twitter Card Tags</td>
+        <td><span class="status-missing">Missing</span></td>
+        <td>Medium</td>
+        <td>No Twitter/X card meta tags</td>
+      </tr>
+      <tr>
+        <td>Sitemap.xml</td>
+        <td><span class="status-partial">Partial</span></td>
+        <td>Medium</td>
+        <td>WordPress default; likely not curated or submitted</td>
+      </tr>
+      <tr>
+        <td>robots.txt</td>
+        <td><span class="status-partial">Partial</span></td>
+        <td>Low</td>
+        <td>Default WordPress robots.txt — not customized</td>
+      </tr>
+      <tr>
+        <td>SSL / HTTPS</td>
+        <td><span class="status-present">Present</span></td>
+        <td>High</td>
+        <td>Valid HTTPS enforced — good</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="finding finding-info">
+    <span class="finding-tag">Note</span>
+    <h4>Performance Overhead: Divi Framework</h4>
+    <p>The page ships <strong>19+ JavaScript files</strong> and massive inline CSS blocks (the Divi parent stylesheet alone is ~3,500+ lines inlined). Combined with jQuery shims, mediaelement player, carousel libraries, and waypoint/animation scripts, the homepage has significant render-blocking overhead. For a site that is primarily text and imagery, this is disproportionate. Core Web Vitals (LCP, CLS, INP) will be negatively affected.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="confidential">Confidential</span>
+    <span>Page 2</span>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!-- ║       PAGE 3 — UX, DESIGN & LAYOUT ANALYSIS        ║ -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">Fortuity Inc. — Domain Audit</div>
+    <div class="page-header-right">UX, Design & Layout</div>
+  </div>
+
+  <div class="section-title-wrapper">
+    <div class="section-number">3</div>
+    <h1 class="section-title">UX, Design & Layout Analysis</h1>
+  </div>
+  <p class="section-description">Evaluation of the visual identity, information architecture, user experience, and conversion pathways.</p>
+
+  <h2>What's Working Well</h2>
+  <div class="two-col">
+    <div class="highlight-box">
+      <p><strong>Brand Voice & Copywriting.</strong> The site's tone — "Discretion does not advertise" — is exceptionally well-crafted. The copy avoids generic jargon and communicates exclusivity with restraint. This is a genuine competitive asset.</p>
+    </div>
+    <div class="highlight-box">
+      <p><strong>Color & Typography System.</strong> The navy (#2c2d3b) / gold (#b4975a) palette with Times New Roman headings projects old-world authority. The full-viewport hero with video background and dark overlay creates an immediate premium impression.</p>
+    </div>
+  </div>
+
+  <h2>Critical Design & UX Issues</h2>
+
+  <div class="finding finding-critical">
+    <span class="finding-tag">Critical</span>
+    <h4>No Client Portal or Secure Login</h4>
+    <p>The site offers zero post-engagement digital touchpoints. Clients who have entrusted their family's entire financial architecture to Fortuity have no way to log in, view documents, track progress, or communicate securely through the website. In 2026, competitors offer AI-powered consolidated dashboards, secure document vaults, and real-time entity-level reporting. Fortuity's clients are likely using email and phone — a security and convenience gap.</p>
+  </div>
+
+  <div class="finding finding-warning">
+    <span class="finding-tag">Warning</span>
+    <h4>One-Dimensional Navigation Architecture</h4>
+    <p>The footer reveals a rich service taxonomy (Tax, Assets, Wealth, Estate, Business) but the primary navigation buries these under "Our Practice." The site lacks clear user journeys for different personas — a serial entrepreneur exploring business consulting vs. an aging patriarch evaluating estate continuity should have different entry paths.</p>
+  </div>
+
+  <div class="finding finding-warning">
+    <span class="finding-tag">Warning</span>
+    <h4>Static "Insights" Section — No Content Engine</h4>
+    <p>The /insights/ page exists but functions as a static article archive. There's no categorization by service area, no search functionality, no related content suggestions, no newsletter capture, and no thought leadership distribution strategy. For establishing E-E-A-T (Experience, Expertise, Authority, Trust) — Google's core quality signal — this is a major missed opportunity.</p>
+  </div>
+
+  <div class="finding finding-warning">
+    <span class="finding-tag">Warning</span>
+    <h4>Mobile Experience Degradation</h4>
+    <p>Custom JavaScript menu system ("fortuity-hamburger") overrides Divi's native mobile nav. While this shows intentionality, the multi-view system switches content layouts at 980px and 767px breakpoints with different text formatting — the phone layout for the hero tagline stacks each phrase vertically without the gold divider's impact. The CTA button group shifts to a column layout that may push key actions below the fold.</p>
+  </div>
+
+  <div class="finding finding-info">
+    <span class="finding-tag">Note</span>
+    <h4>Conversion Path Analysis</h4>
+    <p>The site has exactly <strong>two conversion endpoints</strong>: "Schedule an Appointment" and "Explore Our Practice" — both buttons in the hero. The /connect/ page is the sole intake mechanism. There are no micro-conversions (newsletter signup, downloadable white papers, assessment tools) to capture prospects who aren't ready for a call. For a firm that is "selective by design," this binary approach loses the nurture-stage audience entirely.</p>
+  </div>
+
+  <h2>Information Architecture Gap Map</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Expected Feature</th>
+        <th>Status</th>
+        <th>Competitive Impact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Client Login / Portal</td><td><span class="status-missing">Missing</span></td><td>High — industry standard for family offices</td></tr>
+      <tr><td>Secure Document Vault</td><td><span class="status-missing">Missing</span></td><td>High — expected by UHNW clients</td></tr>
+      <tr><td>Interactive Service Explorer</td><td><span class="status-missing">Missing</span></td><td>Medium — differentiator vs. static pages</td></tr>
+      <tr><td>Case Study / Outcome Stories</td><td><span class="status-missing">Missing</span></td><td>Medium — builds trust without breaking discretion</td></tr>
+      <tr><td>FAQ / Knowledge Base</td><td><span class="status-missing">Missing</span></td><td>Medium — SEO opportunity + client education</td></tr>
+      <tr><td>Team Bios w/ Credentials</td><td><span class="status-present">Present</span></td><td>Good — /firm/our-people/ exists</td></tr>
+      <tr><td>Contact / Appointment Booking</td><td><span class="status-present">Present</span></td><td>Good — /connect/ exists</td></tr>
+      <tr><td>Newsletter / Email Capture</td><td><span class="status-missing">Missing</span></td><td>Medium — nurture-stage lead capture</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <span class="confidential">Confidential</span>
+    <span>Page 3</span>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!-- ║      PAGE 4 — AGENTIC AI: WHAT'S MISSING           ║ -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">Fortuity Inc. — Domain Audit</div>
+    <div class="page-header-right">Agentic AI Gap Analysis</div>
+  </div>
+
+  <div class="section-title-wrapper">
+    <div class="section-number">4</div>
+    <h1 class="section-title">Agentic AI — What Fortuity Is Missing</h1>
+  </div>
+  <p class="section-description">The firm currently leverages zero agentic AI capabilities. Here's every gap — and why it matters.</p>
+
+  <div class="quote-block">
+    <p>"In 2026, small family office teams of 3–8 professionals are achieving the operational coverage and analytical output previously reserved for teams of 20+ — entirely through AI agents."</p>
+  </div>
+
+  <div class="finding finding-critical">
+    <span class="finding-tag">Critical Gap</span>
+    <h4>No AI-Powered Document Processing</h4>
+    <p>Fortuity manages "nearly a thousand businesses" and "more than a hundred trust funds." Each entity generates tax filings, K-1s, distribution notices, capital calls, and legal documents. Without agentic AI, staff must <strong>manually ingest, classify, and cross-reference</strong> every document. Modern agents process entire K-1 packets in minutes — extracting partner allocations, tax attributes, and compliance flags autonomously. Fortuity is doing this by hand.</p>
+  </div>
+
+  <div class="finding finding-critical">
+    <span class="finding-tag">Critical Gap</span>
+    <h4>No Automated Cross-Entity Reconciliation</h4>
+    <p>With hundreds of families and their businesses, reconciliation across entities, custodians, and jurisdictions is a massive operational burden. AI agents can perform intelligent transaction matching, anomaly detection, and cross-entity reconciliation — reducing month-end close times from weeks to days. The firm's "disciplined, repeatable methodology" is the <em>perfect</em> foundation for AI automation, yet none exists.</p>
+  </div>
+
+  <div class="finding finding-critical">
+    <span class="finding-tag">Critical Gap</span>
+    <h4>No Client-Facing AI Intelligence Layer</h4>
+    <p>Clients have no dashboard, no real-time portfolio view, no AI-generated summaries of their holdings. When a principal asks, "What are my Q3 distributions across all trusts?" — someone at Fortuity must manually pull data, build a spreadsheet, and send an email. An agentic system would answer that question in seconds, directly from a secure portal, with natural-language explanations.</p>
+  </div>
+
+  <div class="finding finding-warning">
+    <span class="finding-tag">Missing</span>
+    <h4>No AI-Enhanced Intake or Prospect Qualification</h4>
+    <p>The /connect/ page uses a basic form. An AI-powered intake system could: pre-qualify prospects based on entity complexity, auto-schedule based on the right advisor's expertise, surface preliminary data from public records, and generate a pre-engagement intelligence brief — all before the first human conversation.</p>
+  </div>
+
+  <div class="finding finding-warning">
+    <span class="finding-tag">Missing</span>
+    <h4>No Proactive Tax-Loss or Opportunity Surfacing</h4>
+    <p>AI agents in modern family offices continuously monitor portfolios for tax-loss harvesting windows, estate freeze opportunities, Roth conversion optimal timing, and regulatory changes. Fortuity's tax and wealth planning services are reactive by default — they wait for review cycles. Agents make these services continuous.</p>
+  </div>
+
+  <div class="finding finding-warning">
+    <span class="finding-tag">Missing</span>
+    <h4>No AI Content Generation for Thought Leadership</h4>
+    <p>The /insights/ section is sparse. An AI agent could draft regulatory alerts, market commentary, and educational content based on Fortuity's practice areas — then route to a human for review and publication. This feeds SEO, builds authority, and gives the team an "always-on" content engine without hiring a content team.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="confidential">Confidential</span>
+    <span>Page 4</span>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!-- ║      PAGE 5 — AGENTIC AI OPPORTUNITY MAP            ║ -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">Fortuity Inc. — Domain Audit</div>
+    <div class="page-header-right">AI Opportunity Map</div>
+  </div>
+
+  <div class="section-title-wrapper">
+    <div class="section-number">5</div>
+    <h1 class="section-title">Agentic AI Opportunity Map</h1>
+  </div>
+  <p class="section-description">Specific AI agent implementations mapped to Fortuity's service lines.</p>
+
+  <div class="ai-grid">
+    <div class="ai-card">
+      <div class="ai-card-icon">📄</div>
+      <span class="impact-badge">Transformative</span>
+      <h4>Document Intelligence Agent</h4>
+      <p>Autonomously ingest K-1s, trust documents, tax returns, and legal agreements. Extract entities, allocations, deadlines, and flag discrepancies. Replaces 60-80% of manual data entry and review.</p>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-icon">🔄</div>
+      <span class="impact-badge">Transformative</span>
+      <h4>Multi-Entity Reconciliation Agent</h4>
+      <p>Continuously match transactions across custodians, bank accounts, and entity structures. Detect anomalies, flag missing entries, and auto-generate variance reports for review.</p>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-icon">📊</div>
+      <span class="impact-badge">High Impact</span>
+      <h4>Principal Intelligence Agent</h4>
+      <p>Natural-language interface for clients to query their entire financial picture. "What were my total distributions in 2025?" answered in seconds with drilldown by entity, trust, or asset class.</p>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-icon">⚡</div>
+      <span class="impact-badge">High Impact</span>
+      <h4>Tax Optimization Agent</h4>
+      <p>Monitor portfolios and entity structures in real-time. Proactively surface tax-loss harvesting windows, Roth conversion opportunities, charitable giving windows, and year-end strategies.</p>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-icon">🛡️</div>
+      <span class="impact-badge">High Impact</span>
+      <h4>Compliance & Regulatory Agent</h4>
+      <p>Track filing deadlines, regulatory changes, and compliance requirements across jurisdictions. Auto-generate checklists and alerts. Prevent missed deadlines before they become penalties.</p>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-icon">📝</div>
+      <span class="impact-badge">Medium Impact</span>
+      <h4>Content & Thought Leadership Agent</h4>
+      <p>Draft regulatory updates, market commentaries, and educational content from practice area expertise. Route to advisors for review. Publish to /insights/ on cadence. Fuel SEO passively.</p>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-icon">🤝</div>
+      <span class="impact-badge">Medium Impact</span>
+      <h4>Intelligent Intake Agent</h4>
+      <p>Pre-qualify prospects, assess entity complexity, route to the right advisor, and generate pre-engagement intelligence briefs from public data — before the first human interaction.</p>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-icon">📈</div>
+      <span class="impact-badge">Medium Impact</span>
+      <h4>Due Diligence Accelerator Agent</h4>
+      <p>For clients making direct investments: scan deal documents, surface risk factors, compare against portfolio allocation targets, and generate structured diligence memos in minutes.</p>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <p><strong>Implementation Philosophy:</strong> Every agent operates with a <strong>human-in-the-loop</strong> architecture. Agents prepare, analyze, and recommend — humans approve, decide, and act. This preserves Fortuity's "one point of accountability" model while multiplying operational capacity by 3-4×. Consequential actions (filings, trades, legal) always require explicit human approval.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="confidential">Confidential</span>
+    <span>Page 5</span>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!-- ║       PAGE 6 — SERVICE OFFERING ENHANCEMENTS        ║ -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">Fortuity Inc. — Domain Audit</div>
+    <div class="page-header-right">Service & Offering Enhancements</div>
+  </div>
+
+  <div class="section-title-wrapper">
+    <div class="section-number">6</div>
+    <h1 class="section-title">Service Offering & Client Experience Enhancements</h1>
+  </div>
+  <p class="section-description">How each practice area can be elevated through technology, better presentation, and AI-powered delivery.</p>
+
+  <h2>Current Service Architecture vs. Recommended</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Practice Area</th>
+        <th>Current State</th>
+        <th>Recommended Enhancement</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Tax Strategy & Compliance</strong></td>
+        <td>Static service page. No interactive tools. Manual filing coordination.</td>
+        <td>AI-powered tax scenario modeling. Automated deadline tracking. Year-round proactive optimization alerts. Interactive tax position dashboard for clients.</td>
+      </tr>
+      <tr>
+        <td><strong>Asset Management & Preservation</strong></td>
+        <td>Descriptive page only. No portfolio visibility for clients.</td>
+        <td>Consolidated multi-custodian dashboard. Real-time asset aggregation across bankable and non-bankable holdings. AI-driven rebalancing recommendations.</td>
+      </tr>
+      <tr>
+        <td><strong>Wealth & Financial Planning</strong></td>
+        <td>Static text description of services offered.</td>
+        <td>Interactive cash flow forecasting tools. Monte Carlo simulation access for clients. AI-generated quarterly wealth summaries in natural language.</td>
+      </tr>
+      <tr>
+        <td><strong>Estate Planning & Continuity</strong></td>
+        <td>Service description page with no interactive elements.</td>
+        <td>Digital family governance hub. Succession readiness assessments. Next-gen education portal. Trust structure visualization tools.</td>
+      </tr>
+      <tr>
+        <td><strong>Business Consulting & Entity Formation</strong></td>
+        <td>Basic service listing.</td>
+        <td>Entity structure optimizer (AI recommends optimal structures). Compliance calendar per entity. AI-assisted formation document preparation.</td>
+      </tr>
+      <tr>
+        <td><strong>Investigative Analysis</strong></td>
+        <td>Mentioned in body copy but not featured as a standalone service.</td>
+        <td>Elevate to hero service. Create a dedicated page showcasing the diagnostic methodology. Offer a "Preliminary Assessment" micro-conversion funnel.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>New Service Offerings Enabled by Agentic AI</h2>
+  <div class="two-col">
+    <div class="rec-block">
+      <div class="rec-priority rec-priority-high">● High Priority</div>
+      <h4>AI-Powered Family Dashboard</h4>
+      <p>A single, secure portal where family principals see their entire financial picture — trusts, businesses, investments, insurance, real estate — with AI-generated plain-language summaries and alerts.</p>
+      <ul>
+        <li>Consolidated net worth across all entities</li>
+        <li>Upcoming deadlines and filing obligations</li>
+        <li>AI-generated quarterly executive summaries</li>
+        <li>Secure document vault with version history</li>
+      </ul>
+    </div>
+    <div class="rec-block">
+      <div class="rec-priority rec-priority-high">● High Priority</div>
+      <h4>"What-If" Scenario Engine</h4>
+      <p>An AI-driven tool that lets advisors (and qualified clients) model scenarios: "What if we sell Business X in Q3?" — and instantly see the cascading impact on estate tax, trust distributions, capital gains, and liquidity.</p>
+      <ul>
+        <li>Multi-variable scenario modeling</li>
+        <li>Tax impact projections across jurisdictions</li>
+        <li>Estate architecture impact visualization</li>
+        <li>Side-by-side comparison of strategies</li>
+      </ul>
+    </div>
+    <div class="rec-block">
+      <div class="rec-priority rec-priority-med">● Medium Priority</div>
+      <h4>Next-Gen Family Education Platform</h4>
+      <p>For Fortuity's estate continuity practice: an interactive learning platform for heirs that introduces them to the family's financial architecture, governance responsibilities, and wealth philosophy.</p>
+      <ul>
+        <li>Modular curriculum per family</li>
+        <li>Interactive trust structure explainers</li>
+        <li>Governance simulation exercises</li>
+        <li>Progress tracking for principals</li>
+      </ul>
+    </div>
+    <div class="rec-block">
+      <div class="rec-priority rec-priority-med">● Medium Priority</div>
+      <h4>Advisor Coordination Hub</h4>
+      <p>Fortuity's core value is coordinating a client's existing professionals. An AI-powered coordination hub would provide a single workspace where attorneys, CPAs, and wealth managers share a unified action plan with task tracking.</p>
+      <ul>
+        <li>Shared, version-controlled strategy documents</li>
+        <li>Task assignment and deadline tracking</li>
+        <li>AI-generated meeting preparation briefs</li>
+        <li>Audit trail for all advisor interactions</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="confidential">Confidential</span>
+    <span>Page 6</span>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!-- ║       PAGE 7 — SEO & CONTENT STRATEGY              ║ -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">Fortuity Inc. — Domain Audit</div>
+    <div class="page-header-right">SEO & Content Strategy</div>
+  </div>
+
+  <div class="section-title-wrapper">
+    <div class="section-number">7</div>
+    <h1 class="section-title">SEO & Content Strategy Recommendations</h1>
+  </div>
+  <p class="section-description">Actionable fixes and strategic content initiatives to improve search visibility and authority.</p>
+
+  <h2>Immediate Technical SEO Fixes</h2>
+  <div class="rec-block">
+    <div class="rec-priority rec-priority-high">● Immediate — Week 1</div>
+    <h4>Implement Meta Descriptions Across All Pages</h4>
+    <ul>
+      <li>Homepage: "Fortuity Inc. provides private advisory and fractional family office services — integrated tax strategy, asset preservation, estate architecture, and wealth planning for discerning families."</li>
+      <li>Each service page should have a unique 150-160 character description reflecting its specific value proposition</li>
+      <li>Install Yoast SEO or RankMath to manage at scale</li>
+    </ul>
+  </div>
+
+  <div class="rec-block">
+    <div class="rec-priority rec-priority-high">● Immediate — Week 1</div>
+    <h4>Deploy Structured Data (JSON-LD)</h4>
+    <ul>
+      <li><strong>Organization schema:</strong> Legal name, logo, description, contactPoint, address, sameAs (LinkedIn)</li>
+      <li><strong>ProfessionalService schema:</strong> Per practice area page — Tax, Wealth, Estate, etc.</li>
+      <li><strong>Person schema:</strong> For each team member on /firm/our-people/ with jobTitle and affiliation</li>
+      <li><strong>BreadcrumbList schema:</strong> On every interior page for navigation context</li>
+      <li><strong>FAQPage schema:</strong> If/when FAQ content is created — triggers "People Also Ask" features</li>
+    </ul>
+  </div>
+
+  <div class="rec-block">
+    <div class="rec-priority rec-priority-high">● Immediate — Week 1</div>
+    <h4>Add Open Graph & Twitter Card Tags</h4>
+    <ul>
+      <li>og:title, og:description, og:image (use branded share image), og:url, og:type</li>
+      <li>twitter:card = "summary_large_image", twitter:title, twitter:description</li>
+      <li>Create a branded OG share image (1200×630px) with Fortuity's lockup + tagline</li>
+    </ul>
+  </div>
+
+  <h2>Content Strategy — Building Authority</h2>
+  <div class="two-col">
+    <div class="rec-block">
+      <div class="rec-priority rec-priority-med">● Ongoing</div>
+      <h4>Thought Leadership Content Pillars</h4>
+      <ul>
+        <li><strong>Regulatory Intelligence:</strong> Tax law changes, estate planning updates, compliance alerts — showing the firm is always watching</li>
+        <li><strong>Family Governance:</strong> Succession planning frameworks, next-gen education, governance best practices</li>
+        <li><strong>Business Owner Advisory:</strong> Entity structuring, exit planning, valuation insights for serial entrepreneurs</li>
+        <li><strong>Discretion & Philosophy:</strong> Thought pieces on the family office model — this plays to Fortuity's strongest brand differentiator</li>
+      </ul>
+    </div>
+    <div class="rec-block">
+      <div class="rec-priority rec-priority-med">● Ongoing</div>
+      <h4>Long-Tail SEO Keyword Strategy</h4>
+      <ul>
+        <li>"fractional family office services" — low competition, exact match</li>
+        <li>"family office tax strategy for entrepreneurs"</li>
+        <li>"trust fund management advisory"</li>
+        <li>"multi-entity business structure optimization"</li>
+        <li>"estate continuity planning for business owners"</li>
+        <li>"family office for digital asset entrepreneurs"</li>
+        <li>Each keyword should anchor a dedicated content piece or landing page</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Security Hardening Recommendations</h2>
+  <div class="finding finding-warning">
+    <span class="finding-tag">Security</span>
+    <h4>Reduce WordPress Attack Surface</h4>
+    <p>Disable XML-RPC (<code>/xmlrpc.php</code>), remove the generator meta tag revealing "Divi Child Theme By The 20 v.1.0," restrict REST API endpoints to authenticated users, and implement Content Security Policy (CSP) headers. For a firm handling UHNW client data, the exposed WP infrastructure is a reputational risk.</p>
+  </div>
+
+  <div class="page-footer">
+    <span class="confidential">Confidential</span>
+    <span>Page 7</span>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!-- ║         PAGE 8 — IMPLEMENTATION ROADMAP             ║ -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-left">Fortuity Inc. — Domain Audit</div>
+    <div class="page-header-right">Implementation Roadmap</div>
+  </div>
+
+  <div class="section-title-wrapper">
+    <div class="section-number">8</div>
+    <h1 class="section-title">Implementation Roadmap</h1>
+  </div>
+  <p class="section-description">A phased approach to transform Fortuity's digital presence — from quick wins to strategic differentiation.</p>
+
+  <div class="roadmap">
+    <div class="roadmap-phase">
+      <div class="phase-time">Phase 1 — Weeks 1-2: Foundation Fixes</div>
+      <h4>Technical SEO & Security Hardening</h4>
+      <ul>
+        <li>Deploy meta descriptions across all pages</li>
+        <li>Implement JSON-LD structured data (Organization, ProfessionalService, Person)</li>
+        <li>Add Open Graph and Twitter Card meta tags with branded share images</li>
+        <li>Disable XML-RPC, hide WordPress version info, restrict REST API</li>
+        <li>Audit and optimize image alt texts across all pages</li>
+        <li>Submit curated sitemap to Google Search Console</li>
+        <li>Install Core Web Vitals monitoring</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="phase-time">Phase 2 — Weeks 3-6: UX & Conversion Optimization</div>
+      <h4>Information Architecture & Lead Nurture</h4>
+      <ul>
+        <li>Restructure navigation to surface practice areas at the top level</li>
+        <li>Create persona-specific landing pages (entrepreneurs, estate holders, business owners)</li>
+        <li>Build a "Preliminary Assessment" micro-conversion funnel</li>
+        <li>Add newsletter / insight subscription with email nurture sequence</li>
+        <li>Implement FAQ sections on service pages (with FAQPage schema)</li>
+        <li>Create anonymized case studies / outcome narratives</li>
+        <li>Elevate "Investigative Analysis" to a hero service offering</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="phase-time">Phase 3 — Months 2-3: Client Portal & AI Foundation</div>
+      <h4>Secure Client Experience Layer</h4>
+      <ul>
+        <li>Deploy a secure client portal (evaluate: Masttro, Addepar, Asora, or custom build)</li>
+        <li>Implement secure document vault with role-based access</li>
+        <li>Integrate AI-powered document processing (K-1s, tax returns, legal docs)</li>
+        <li>Build automated cross-entity reconciliation workflows</li>
+        <li>Launch Principal Intelligence interface for natural-language financial queries</li>
+        <li>Deploy compliance deadline tracking and automated alert system</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="phase-time">Phase 4 — Months 4-6: Agentic AI at Scale</div>
+      <h4>Full AI Agent Ecosystem</h4>
+      <ul>
+        <li>Deploy Tax Optimization Agent (continuous portfolio monitoring)</li>
+        <li>Launch "What-If" scenario engine for advisors and qualified clients</li>
+        <li>Implement AI-powered content engine for /insights/ (with human review)</li>
+        <li>Build Advisor Coordination Hub for multi-professional collaboration</li>
+        <li>Deploy Intelligent Intake Agent for prospect qualification</li>
+        <li>Launch Due Diligence Accelerator for direct investment clients</li>
+        <li>Implement family governance and next-gen education modules</li>
+      </ul>
+    </div>
+
+    <div class="roadmap-phase">
+      <div class="phase-time">Phase 5 — Ongoing: Continuous Evolution</div>
+      <h4>Measurement, Optimization & Differentiation</h4>
+      <ul>
+        <li>Monthly SEO performance reviews and content optimization</li>
+        <li>Quarterly AI agent performance audits (accuracy, adoption, ROI)</li>
+        <li>Client feedback loops on portal experience</li>
+        <li>Expand AI capabilities based on team and client adoption patterns</li>
+        <li>Consider industry thought leadership positioning as "the AI-native family office"</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="executive-card" style="margin-top: 1.5rem;">
+    <h2>The Strategic Imperative</h2>
+    <p>
+      Fortuity's brand promise is powerful: <em>"One point of accountability. Integrated strategy. Coordinated execution."</em> Every recommendation in this report reinforces that promise through technology. The AI agents don't replace the human stewardship — they amplify it. The client portal doesn't dilute the relationship — it deepens it. The SEO fixes don't chase vanity traffic — they ensure the right families find the right firm.
+    </p>
+    <p>
+      In 2026, the family offices that thrive will be the ones that pair old-world values with new-world capabilities. Fortuity has the values. This roadmap provides the capabilities.
+    </p>
+  </div>
+
+  <div class="page-footer">
+    <span class="confidential">Confidential</span>
+    <span>Page 8</span>
+  </div>
+</div>
+
+</body>
+</html>
